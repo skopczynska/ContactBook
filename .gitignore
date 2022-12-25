@@ -1,0 +1,5 @@
+.gitignore.bak
+.vs/
+ContactBook.App/bin/
+ContactBook.App/obj/
+ContactBook.App/ContactBook.App.csproj.user
