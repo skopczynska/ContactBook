@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
+using ContactBook.App.Commands;
+using ContactBook.App.DataRepositories;
 using ContactBook.App.Models;
 
 namespace ContactBook.App.ViewModels
@@ -17,10 +19,10 @@ namespace ContactBook.App.ViewModels
         
         public ICommand DeleteCommand { get; }
 
-        public ContactListItemViewModel(Contact contact)
+        public ContactListItemViewModel(Contact contact, ContactRepository contactRepository)
         {
             Contact = contact;
-            
+            DeleteCommand = new DeleteContactCommand(this, contactRepository);
          
         }
     }

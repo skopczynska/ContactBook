@@ -3,10 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:res="clr-namespace:ContactBook.App"
              xmlns:local="clr-namespace:ContactBook.App.Views"
              xmlns:components="clr-namespace:ContactBook.App.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style x:Key="StoreButtonsStyle" TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.60"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -22,8 +32,8 @@
         <components:ContactListView Grid.Row="2" DataContext="{Binding ContactListViewModel}"></components:ContactListView>
 
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Width="100" Height="25" Margin="0 0 10 0" Command="{Binding CancelChanges}">Cancel</Button>
-            <Button Width="100" Height="25" Margin="0 0 10 0" Command="{Binding SaveChanges}">Save</Button>
+            <Button Width="100" Height="25" Margin="0 0 10 0" Command="{Binding CancelChanges}" Style="{StaticResource StoreButtonsStyle}">Cancel</Button>
+            <Button Width="100" Height="25" Margin="0 0 10 0" Command="{Binding SaveChanges}" Style="{StaticResource StoreButtonsStyle}">Save</Button>
         </StackPanel>
         
     </Grid>

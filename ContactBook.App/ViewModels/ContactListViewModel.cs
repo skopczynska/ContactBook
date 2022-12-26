@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using ContactBook.App.DataRepositories;
 using ContactBook.App.Models;
 
 namespace ContactBook.App.ViewModels
@@ -12,16 +13,34 @@ namespace ContactBook.App.ViewModels
     public class ContactListViewModel : ObservableObject
     {
         private ObservableCollection<ContactListItemViewModel> _contacts;
+        private ContactRepository _contactRepository;
         public IEnumerable<ContactListItemViewModel> Contacts => _contacts;
 
-        public ContactListViewModel()
+
+
+        public ContactListViewModel(ContactRepository contactRepository)
         {
-            _contacts = new ObservableCollection<ContactListItemViewModel>()
-            {
-                new ContactListItemViewModel(new Contact() { FirstName = "Sylwia", LastName="Nowak", StreetName="Grzybowa", HouseNumber="14", ApartmentNumber="01", PostalCode="60-600", Town="Poznań", PhoneNumber="123-45-65", DateOfBirth=new DateTime(1988,01,13)}),
-                new ContactListItemViewModel(new Contact() { FirstName = "Adam", LastName="Kowalski", StreetName="Makowa", HouseNumber="10", PostalCode="60-600", Town="Warszawa", PhoneNumber="150 508 588", DateOfBirth=new DateTime(1983,06,14)}),
-                  new ContactListItemViewModel(new Contact() { FirstName = "Wiktoria", LastName="Kowalski", StreetName="Rybna", HouseNumber="20", PostalCode="60-600", Town="Warszawa", PhoneNumber="340 123 444", DateOfBirth=new DateTime(2022,08,15)}),
-            };
+            _contactRepository = contactRepository;
+            contactRepository.ContactAdded += ContactRepository_ContactAdded;
+            contactRepository.ContactDeleted += ContactRepository_ContactDeleted;
+            _contacts = new ObservableCollection<ContactListItemViewModel>();
+          
+        }
+        protected void Dispose()
+        {
+            _contactRepository.ContactAdded -= ContactRepository_ContactAdded;
+        }
+        private void ContactRepository_ContactAdded(Contact newContact)
+        {
+            _contacts.Add(new ContactListItemViewModel(newContact, _contactRepository));
+        }
+
+        private void ContactRepository_ContactDeleted(Contact contactToDelete)
+        {
+            //TODO: Improve for guids
+            //TODO: Handle missing contact
+            var contactViewModelToDelete = _contacts.First(c=> c.Contact.FirstName == contactToDelete.FirstName);
+            _contacts.Remove(contactViewModelToDelete);
         }
     }
 }

@@ -13,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ContactBook.App
+namespace ContactBook.App.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logika interakcji dla klasy AddContactView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddContactView : UserControl
     {
-        public MainWindow()
+        public AddContactView()
         {
             InitializeComponent();
-        }
-
-        private void ScrollViewer_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
-        {
-
         }
     }
 }
