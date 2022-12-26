@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="ContactBook.App.Views.ContactBookView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ContactBook.App.Views"
+             xmlns:components="clr-namespace:ContactBook.App.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0">Contact Book</TextBlock>
+
+        <Button Grid.Row="1" Width="100" Height="30" HorizontalAlignment="Right" Command="{Binding AddContact}">Add</Button>
+
+        <components:ContactListView Grid.Row="2" DataContext="{Binding ContactListViewModel}"></components:ContactListView>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Width="100" Height="25" Margin="0 0 10 0" Command="{Binding CancelChanges}">Cancel</Button>
+            <Button Width="100" Height="25" Margin="0 0 10 0" Command="{Binding SaveChanges}">Save</Button>
+        </StackPanel>
+        
+    </Grid>
+</UserControl>
