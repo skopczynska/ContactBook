@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ContactBook.App.Models;
 
-namespace ContactBook.App.DataRepositories
+namespace ContactBook.App.Stores
 {
     public class ContactRepository
     {

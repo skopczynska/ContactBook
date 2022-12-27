@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ContactBook.App.Commands;
-using ContactBook.App.DataRepositories;
 using ContactBook.App.Stores;
 
 namespace ContactBook.App.ViewModels

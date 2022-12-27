@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
-using ContactBook.App.DataRepositories;
 using ContactBook.App.Models;
+using ContactBook.App.Stores;
 
 namespace ContactBook.App.ViewModels
 {
