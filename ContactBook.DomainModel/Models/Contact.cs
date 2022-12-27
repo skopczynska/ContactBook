@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ContactBook.App.Models
+namespace ContactBook.DomainModel.Models
 {
     public class Contact
     {

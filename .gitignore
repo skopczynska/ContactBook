@@ -3,3 +3,7 @@
 ContactBook.App/bin/
 ContactBook.App/obj/
 ContactBook.App/ContactBook.App.csproj.user
+ContactBook.DomainModel/bin/
+ContactBook.DomainModel/obj/
+ContactBook.FileStorage/bin/
+ContactBook.FileStorage/obj/

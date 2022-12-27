@@ -7,8 +7,8 @@ using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ContactBook.App.Commands;
 using ContactBook.App.Helpers;
-using ContactBook.App.Models;
 using ContactBook.App.Stores;
+using ContactBook.DomainModel.Models;
 
 namespace ContactBook.App.ViewModels
 {

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactBook.App", "ContactBook.App\ContactBook.App.csproj", "{C45825B4-EB3D-4866-811B-587C619911F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactBook.DomainModel", "ContactBook.DomainModel\ContactBook.DomainModel.csproj", "{A1303008-8652-4A40-958D-BB47D311A80C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{C45825B4-EB3D-4866-811B-587C619911F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C45825B4-EB3D-4866-811B-587C619911F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C45825B4-EB3D-4866-811B-587C619911F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1303008-8652-4A40-958D-BB47D311A80C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1303008-8652-4A40-958D-BB47D311A80C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1303008-8652-4A40-958D-BB47D311A80C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1303008-8652-4A40-958D-BB47D311A80C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

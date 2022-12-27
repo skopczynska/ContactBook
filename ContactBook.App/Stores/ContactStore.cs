@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ContactBook.App.Models;
+using ContactBook.DomainModel.Models;
 
 namespace ContactBook.App.Stores
 {

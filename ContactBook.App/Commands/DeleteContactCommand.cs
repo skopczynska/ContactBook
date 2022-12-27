@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using ContactBook.App.Models;
 using ContactBook.App.Stores;
 using ContactBook.App.ViewModels;
 
