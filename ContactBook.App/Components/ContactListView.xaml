@@ -74,7 +74,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBox Width="85" Text="{Binding Path=Contact.DateOfBirth, StringFormat=dd-MM-yyyy}" ></TextBox>
+                                    <DatePicker Width="95" SelectedDate="{Binding Path=Contact.DateOfBirth}"></DatePicker>
                                 </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -84,6 +84,7 @@
                             <DataTemplate>
                                 <TextBlock Width="45" Text="{Binding Path=Contact.DateOfBirth, 
                                     Converter={StaticResource birthdateToAgeConverter}}" ></TextBlock>
+                                
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
