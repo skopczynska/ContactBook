@@ -26,6 +26,10 @@ namespace ContactBook.App.Helpers
             {
                 age--;
             }
+            if (age < 0)
+            {
+                age++;
+            }
             return age;
 
         }
