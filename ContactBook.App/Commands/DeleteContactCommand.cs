@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ContactBook.App.Stores;
 using ContactBook.App.ViewModels;
+using ContactBook.DomainModel.Models;
 
 namespace ContactBook.App.Commands
 {
@@ -12,13 +13,13 @@ namespace ContactBook.App.Commands
 
         private ContactListItemViewModel _contactListItemViewModel;
         private ModalNavigationStore _modalNavigationStore;
-        private ContactRepository _contactRepository;
+        private ContactStore _contactStore;
 
-        public DeleteContactCommand(ContactListItemViewModel contactListItemViewModel,  ContactRepository contactRepository)
+        public DeleteContactCommand(ContactListItemViewModel contactListItemViewModel,  ContactStore contactStore)
         {
             _contactListItemViewModel = contactListItemViewModel;
             
-            _contactRepository = contactRepository;
+            _contactStore = contactStore;
         }
 
         public bool CanExecute(object? parameter)
@@ -41,7 +42,7 @@ namespace ContactBook.App.Commands
         private async Task ExecuteAsync(object? parameter)
         {
             Contact contactToDelete = _contactListItemViewModel.Contact;
-            _contactRepository.Delete(contactToDelete);
+            _contactStore.Delete(contactToDelete);
         }
     }
 }

@@ -18,10 +18,10 @@ namespace ContactBook.App.ViewModels
         public ContactBookViewModel ContactBookViewModel { get; }
 
 
-        public MainViewModel(ModalNavigationStore modalNavigationStore, ContactRepository contactRepository)
+        public MainViewModel(ModalNavigationStore modalNavigationStore, ContactStore contactStore)
         {
             _modalNavigationStore = modalNavigationStore;
-            ContactBookViewModel = new ContactBookViewModel(_modalNavigationStore, contactRepository);
+            ContactBookViewModel = new ContactBookViewModel(_modalNavigationStore, contactStore);
 
             _modalNavigationStore.CurrentViewModelChanged += _modalNavigationStore_CurrentViewModelChanged;
 

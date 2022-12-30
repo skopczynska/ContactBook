@@ -12,13 +12,13 @@ namespace ContactBook.App.Commands
     public class OpenAddContactViewCommand : ICommand
     {
         private ModalNavigationStore _modalNavigationStore;
-        private  ContactRepository _contactRepository;
+        private ContactStore _contactStore;
 
 
-        public OpenAddContactViewCommand(ModalNavigationStore modalNavigationStore, ContactRepository contactRepository)
+        public OpenAddContactViewCommand(ModalNavigationStore modalNavigationStore, ContactStore contactStore)
         {
             _modalNavigationStore = modalNavigationStore;
-            _contactRepository = contactRepository;
+            _contactStore = contactStore;
         }
 
         public event EventHandler? CanExecuteChanged;
@@ -30,7 +30,7 @@ namespace ContactBook.App.Commands
 
         public void Execute(object? parameter)
         {
-            AddContactViewModel addContactViewModel = new AddContactViewModel(_modalNavigationStore, _contactRepository);
+            AddContactViewModel addContactViewModel = new AddContactViewModel(_modalNavigationStore, _contactStore);
             _modalNavigationStore.CurrentViewModel = addContactViewModel;
 
         }

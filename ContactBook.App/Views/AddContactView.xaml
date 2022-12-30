@@ -66,18 +66,21 @@
             <TextBox Grid.Column="1" Grid.Row="5" Style="{StaticResource addContactTextBoxStyle}" Text="{Binding Path=NewContact.PostalCode, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBox Grid.Column="1" Grid.Row="6" Style="{StaticResource addContactTextBoxStyle}" Text="{Binding Path=NewContact.Town, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <TextBox Grid.Column="1" Grid.Row="7" Style="{StaticResource addContactTextBoxStyle}" Text="{Binding Path=NewContact.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <TextBox Grid.Column="1" Grid.Row="8" >
-                <TextBox.Style>
-                    <Style TargetType="TextBox" BasedOn="{StaticResource addContactTextBoxStyle}">
-                        <Setter Property="Text" Value="{Binding Path=NewContact.DateOfBirth, UpdateSourceTrigger=PropertyChanged, StringFormat=dd-MM-yyyy}"></Setter>
+            <DatePicker Grid.Column="1" Grid.Row="8" >
+                <DatePicker.Style>
+                    <Style TargetType="DatePicker">
+                        <Setter Property="SelectedDate" Value="{Binding Path=NewContact.DateOfBirth, UpdateSourceTrigger=PropertyChanged}"></Setter>
+                        <Setter Property="Width" Value="250"/>
+                        <Setter Property="Height" Value="26"/>
+                        <Setter Property="HorizontalAlignment" Value="Left"/>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding NewContact.DateOfBirth}" Value="{x:Static sys:DateTime.MinValue}">
-                                <Setter Property="Text" Value="" />
+                                <Setter Property="SelectedDate" Value="" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
-                </TextBox.Style>
-            </TextBox>
+                </DatePicker.Style>
+            </DatePicker>
             
         </Grid>
 

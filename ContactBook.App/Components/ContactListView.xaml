@@ -5,68 +5,69 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ContactBook.App.Components"
              xmlns:helpers="clr-namespace:ContactBook.App.Helpers"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <helpers:BirtdateToAgeConverter x:Key="birthdateToAgeConverter"/>
     </UserControl.Resources>
     <Grid>
-        <ListView ItemsSource="{Binding Contacts}">
+        <ListView ItemsSource="{Binding Contacts}" TextBoxBase.TextChanged="TextBox_TextChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn  Width="120" Header="First name">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox Width="105" Text="{Binding Path=Contact.FirstName}"></TextBox>
+                                <TextBox Width="105" Text="{Binding Path=FirstName}"></TextBox>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn  Width="120" Header="Last Name">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox Width="105" Text="{Binding Path=Contact.LastName}"></TextBox>
+                                <TextBox Width="105" Text="{Binding Path=LastName}"></TextBox>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn  Width="120" Header="Street name">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox Width="105" Text="{Binding Path=Contact.StreetName}"></TextBox>
+                                <TextBox Width="105" Text="{Binding Path=StreetName}"></TextBox>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn  Width="70" Header="House number">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox Width="55" Text="{Binding Path=Contact.HouseNumber}"></TextBox>
+                                <TextBox Width="55" Text="{Binding Path=HouseNumber}"></TextBox>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn  Width="70" Header="Apt number">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox Width="55" Text="{Binding Path=Contact.ApartmentNumber}"></TextBox>
+                                <TextBox Width="55" Text="{Binding Path=ApartmentNumber}"></TextBox>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn  Width="80" Header="Postal code">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox Width="55" Text="{Binding Path=Contact.PostalCode}"></TextBox>
+                                <TextBox Width="55" Text="{Binding Path=PostalCode}"></TextBox>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn  Width="100" Header="Town">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox Width="85" Text="{Binding Path=Contact.Town}"></TextBox>
+                                <TextBox Width="85" Text="{Binding Path=Town}"></TextBox>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn  Width="100" Header="Phone number">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox Width="85" Text="{Binding Path=Contact.PhoneNumber}"></TextBox>
+                                <TextBox Width="85" Text="{Binding Path=PhoneNumber}" ></TextBox>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -74,7 +75,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <DatePicker Width="95" SelectedDate="{Binding Path=Contact.DateOfBirth}"></DatePicker>
+                                    <DatePicker Width="95" SelectedDate="{Binding Path=DateOfBirth}"></DatePicker>
                                 </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
@@ -82,7 +83,7 @@
                     <GridViewColumn  Width="60" Header="Age">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Width="45" Text="{Binding Path=Contact.DateOfBirth, 
+                                <TextBlock Width="45" Text="{Binding Path=DateOfBirth, 
                                     Converter={StaticResource birthdateToAgeConverter}}" ></TextBlock>
                                 
                             </DataTemplate>

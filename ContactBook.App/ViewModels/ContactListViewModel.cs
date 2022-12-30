@@ -7,39 +7,73 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using ContactBook.DomainModel.Models;
 using ContactBook.App.Stores;
+using System.Windows.Input;
+using ContactBook.App.Commands;
 
 namespace ContactBook.App.ViewModels
 {
     public class ContactListViewModel : ObservableObject
     {
         private ObservableCollection<ContactListItemViewModel> _contacts;
-        private ContactRepository _contactRepository;
+        private ContactStore _contactStore;
         public IEnumerable<ContactListItemViewModel> Contacts => _contacts;
 
+        public ICommand LoadAllContactsCommand { get; }
+        
+        
 
-
-        public ContactListViewModel(ContactRepository contactRepository)
+        public ContactListViewModel(ContactStore contactStore)
         {
-            _contactRepository = contactRepository;
-            contactRepository.ContactAdded += ContactRepository_ContactAdded;
-            contactRepository.ContactDeleted += ContactRepository_ContactDeleted;
+            _contactStore = contactStore;
+            _contactStore.ContactAdded += ContactStore_ContactAdded;
+            _contactStore.ContactDeleted += ContactStore_ContactDeleted;
+            _contactStore.ContactsGot += ContactStore_ContactsGot;
             _contacts = new ObservableCollection<ContactListItemViewModel>();
+           
+            LoadAllContactsCommand = new GetAllContactsCommand(contactStore);
           
         }
-        protected void Dispose()
+
+       
+
+        private void ContactStore_ContactsGot()
         {
-            _contactRepository.ContactAdded -= ContactRepository_ContactAdded;
-        }
-        private void ContactRepository_ContactAdded(Contact newContact)
-        {
-            _contacts.Add(new ContactListItemViewModel(newContact, _contactRepository));
+            _contacts.Clear();
+
+            foreach (Contact contact in _contactStore.Contacts)
+            {
+                ContactListItemViewModel clvim = new ContactListItemViewModel(contact, _contactStore);
+                _contacts.Add(clvim);
+            }
         }
 
-        private void ContactRepository_ContactDeleted(Contact contactToDelete)
+        public static ContactListViewModel GetInitiatedContactListViewModel(ContactStore contactStore)
         {
-            //TODO: Improve for guids
+            ContactListViewModel contactListViewModel = new ContactListViewModel(contactStore);
+            contactListViewModel.LoadAllContactsCommand.Execute(null);
+            return contactListViewModel;
+        }
+
+        protected void Dispose()
+        {
+            _contactStore.ContactAdded -= ContactStore_ContactAdded;
+            _contactStore.ContactDeleted -= ContactStore_ContactDeleted;
+            _contactStore.ContactsGot  -= ContactStore_ContactsGot;
+            
+        }
+        private void ContactStore_ContactAdded(Contact newContact)
+        {
+            ContactListItemViewModel clvim = new ContactListItemViewModel(newContact, _contactStore);
+            _contacts.Add(clvim);
+        }
+
+        
+
+        private void ContactStore_ContactDeleted(Contact contactToDelete)
+        {
+            
             //TODO: Handle missing contact
-            var contactViewModelToDelete = _contacts.First(c=> c.Contact.FirstName == contactToDelete.FirstName);
+            var contactViewModelToDelete = _contacts.First(c=> c.Contact.Id == contactToDelete.Id);
             _contacts.Remove(contactViewModelToDelete);
         }
     }

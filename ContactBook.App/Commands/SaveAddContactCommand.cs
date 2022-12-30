@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ContactBook.App.Stores;
 using ContactBook.App.ViewModels;
+using ContactBook.DomainModel.Models;
 
 namespace ContactBook.App.Commands
 {
@@ -15,13 +16,13 @@ namespace ContactBook.App.Commands
 
         private AddContactViewModel _addContactViewModel;
         private ModalNavigationStore _modalNavigationStore;
-        private ContactRepository _contactRepository;
+        private ContactStore _contactStore;
 
-        public SaveAddContactCommand(AddContactViewModel addContactViewModel, ModalNavigationStore modalNavigationStore, ContactRepository contactRepository)
+        public SaveAddContactCommand(AddContactViewModel addContactViewModel, ModalNavigationStore modalNavigationStore, ContactStore contactStore)
         {
             _addContactViewModel = addContactViewModel;
             _modalNavigationStore = modalNavigationStore;
-            _contactRepository = contactRepository;
+            _contactStore = contactStore;
         }
 
         public bool CanExecute(object? parameter)
@@ -44,7 +45,7 @@ namespace ContactBook.App.Commands
         private async Task ExecuteAsync(object? parameter)
         {
             Contact newContact = _addContactViewModel.NewContact;
-            _contactRepository.Add(newContact);
+            _contactStore.Add(newContact);
             _modalNavigationStore.Close();
         }
     }

@@ -21,10 +21,10 @@ namespace ContactBook.App.ViewModels
 
         public bool CanAdd => true;
 
-        public AddContactViewModel(ModalNavigationStore modalNavigationStore, ContactRepository contactRepository)
+        public AddContactViewModel(ModalNavigationStore modalNavigationStore, ContactStore contactStore)
         {
             NewContact = new Contact();
-            AddCommand = new SaveAddContactCommand(this, modalNavigationStore, contactRepository);
+            AddCommand = new SaveAddContactCommand(this, modalNavigationStore, contactStore);
             CancelCommand = new CloseModalCommand(modalNavigationStore);
         }
     }

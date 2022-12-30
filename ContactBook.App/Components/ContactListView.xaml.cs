@@ -20,9 +20,15 @@ namespace ContactBook.App.Components
     /// </summary>
     public partial class ContactListView : UserControl
     {
+        public event Action TextChanged;
         public ContactListView()
         {
             InitializeComponent();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextChanged.Invoke();
         }
     }
 }

@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactBook.App", "ContactB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactBook.DomainModel", "ContactBook.DomainModel\ContactBook.DomainModel.csproj", "{A1303008-8652-4A40-958D-BB47D311A80C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactBook.FileStorage", "ContactBook.FileStorage\ContactBook.FileStorage.csproj", "{00AAC703-8F52-40F3-A688-D0CE98DB396B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactBook.FileStorage.Tests", "ContactBook.FileStorage.Tests\ContactBook.FileStorage.Tests.csproj", "{957279FA-ED41-4627-912C-2B9AB1E833DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{A1303008-8652-4A40-958D-BB47D311A80C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1303008-8652-4A40-958D-BB47D311A80C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1303008-8652-4A40-958D-BB47D311A80C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00AAC703-8F52-40F3-A688-D0CE98DB396B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00AAC703-8F52-40F3-A688-D0CE98DB396B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00AAC703-8F52-40F3-A688-D0CE98DB396B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00AAC703-8F52-40F3-A688-D0CE98DB396B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{957279FA-ED41-4627-912C-2B9AB1E833DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{957279FA-ED41-4627-912C-2B9AB1E833DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{957279FA-ED41-4627-912C-2B9AB1E833DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{957279FA-ED41-4627-912C-2B9AB1E833DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

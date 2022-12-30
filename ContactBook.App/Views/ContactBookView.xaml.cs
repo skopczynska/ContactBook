@@ -24,5 +24,10 @@ namespace ContactBook.App.Views
         {
             InitializeComponent();
         }
+
+        private void ContactListView_TextChanged()
+        {
+
+        }
     }
 }
