@@ -28,13 +28,17 @@ namespace ContactBook.App.ViewModels
             _contactStore.ContactAdded += ContactStore_ContactAdded;
             _contactStore.ContactDeleted += ContactStore_ContactDeleted;
             _contactStore.ContactsGot += ContactStore_ContactsGot;
+            _contactStore.ChangesToContactsCancelled += ContactStore_ChangesToContactsCancelled;
             _contacts = new ObservableCollection<ContactListItemViewModel>();
            
             LoadAllContactsCommand = new GetAllContactsCommand(contactStore);
           
         }
 
-       
+        private void ContactStore_ChangesToContactsCancelled()
+        {
+            ContactStore_ContactsGot();
+        }
 
         private void ContactStore_ContactsGot()
         {

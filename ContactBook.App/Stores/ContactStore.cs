@@ -21,6 +21,7 @@ namespace ContactBook.App.Stores
         public event Action<Contact> ContactUpdated;
         public event Action ContactsGot;
         public event Action ContactsUpdated;
+        public event Action ChangesToContactsCancelled;
 
         public List<Contact> Contacts { get; set; }
 
@@ -71,6 +72,18 @@ namespace ContactBook.App.Stores
             await _updateContactsCommand.Execute(contacts);
 
             ContactsUpdated?.Invoke();
+        }
+
+        public async Task<IEnumerable<Contact>> CancelChanges()
+        {
+            IEnumerable<Contact> contacts = await _getAllContactsQuery.Execute();
+            Contacts.Clear();
+            Contacts.AddRange(contacts);
+
+            ChangesToContactsCancelled.Invoke();
+
+            return contacts;
+
         }
     }
 }

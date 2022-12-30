@@ -23,7 +23,7 @@ namespace ContactBook.FileStorage.FileManagers
 
         public async Task<IEnumerable<Contact>> GetAllContacts()
         {
-            if (File.Exists(_pathToFile))
+            if (File.Exists(_fullPathToFile))
             {
                 return LoadAllContacts();
             }
@@ -35,7 +35,7 @@ namespace ContactBook.FileStorage.FileManagers
             int idIterator = 0;
             var storedContacts = new List<Contact>();
 
-            XDocument root = XDocument.Load(_pathToFile);
+            XDocument root = XDocument.Load(_fullPathToFile);
             
 
                 foreach (var xmlElement in root.Root.Elements())

@@ -40,10 +40,17 @@ namespace ContactBook.App.ViewModels
 
             AddContact = new OpenAddContactViewCommand(_modalNavigationStore, contactStore);
             SaveChanges = new SaveContactsCommand(ContactListViewModel, contactStore);
+            CancelChanges = new CancelContactsCommand(contactStore);
 
             contactStore.ContactsUpdated += ContactStore_ContactsUpdated;
             contactStore.ContactAdded += ContactStore_ContactAdded;
             contactStore.ContactUpdated += ContactStore_ContactUpdated;
+            contactStore.ChangesToContactsCancelled += ContactStore_ChangesToContactsCancelled;
+        }
+
+        private void ContactStore_ChangesToContactsCancelled()
+        {
+            IsAnythingToSave = false;
         }
 
         private void ContactStore_ContactUpdated(DomainModel.Models.Contact obj)
