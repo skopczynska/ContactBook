@@ -29,6 +29,7 @@ namespace ContactBook.App.Components
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextChanged.Invoke();
+            e.Handled = false;
         }
     }
 }

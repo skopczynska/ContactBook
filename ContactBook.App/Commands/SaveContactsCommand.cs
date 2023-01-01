@@ -32,7 +32,10 @@ namespace ContactBook.App.Commands
         {
             try
             {
-                await ExecuteAsync();
+                if (!_contactStore.HasValidationError)
+                    await ExecuteAsync();
+                else
+                    _contactListViewModel.ErrorMessage = "Cannot save because there are validation errors. Correct the marked data.";
             }
             catch
             {

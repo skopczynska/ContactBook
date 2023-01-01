@@ -8,7 +8,7 @@
         xmlns:modalcontrol="clr-namespace:ModalControl;assembly=ModalControl"
         xmlns:viewmodels="clr-namespace:ContactBook.App.ViewModels"
         mc:Ignorable="d"
-        Title="ContactBook" Height="550" Width="1200">
+        Title="ContactBook" Height="600" Width="1200">
 
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewmodels:AddContactViewModel}">

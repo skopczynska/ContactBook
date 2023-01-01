@@ -5,26 +5,34 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ContactBook.App.Components"
              xmlns:helpers="clr-namespace:ContactBook.App.Helpers"
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:validationrules="clr-namespace:ContactBook.App.ValidationRules"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <helpers:BirtdateToAgeConverter x:Key="birthdateToAgeConverter"/>
-        <BooleanToVisibilityConverter x:Key="boolToVisibilityConverter"/>
+        <helpers:BooleanToVisibleNotVivilbeConverter x:Key="boolToVisibilityConverter"/>
+        <Style TargetType="TextBox">
+            <Setter Property="BorderBrush" Value="Green"/>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="BorderBrush" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <StackPanel>
             
-            <TextBlock Height="50" Text="{Binding ErrorMessage}" Visibility="{Binding IsErrorPresent, Converter={StaticResource boolToVisibilityConverter}}">
-            </TextBlock>
             
-            <ListView ItemsSource="{Binding Contacts}" TextBoxBase.TextChanged="TextBox_TextChanged">
+            
+            <ListView ItemsSource="{Binding Contacts}" TextBoxBase.TextChanged="TextBox_TextChanged"
+                      Height="400">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn  Width="120" Header="First name">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox Width="105" Text="{Binding Path=FirstName}"></TextBox>
+                                    <TextBox  Width="105" Text="{Binding Path=FirstName}"></TextBox>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -105,6 +113,14 @@
                     </GridView>
                 </ListView.View>
             </ListView>
+
+            <TextBlock Height="50" Text="{Binding ErrorMessage}" 
+                       Visibility="{Binding IsErrorPresent, Converter={StaticResource boolToVisibilityConverter}}"
+                       Foreground="Red"
+                       Background="Gray">
+            
+            </TextBlock>
+            
         </StackPanel>
     </Grid>
 </UserControl>

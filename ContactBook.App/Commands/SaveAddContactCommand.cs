@@ -34,7 +34,8 @@ namespace ContactBook.App.Commands
         {
             try
             {
-               await ExecuteAsync(parameter);
+               if (!_addContactViewModel.HasErrors)
+                 await ExecuteAsync(parameter);
             }
             catch(Exception)
             {

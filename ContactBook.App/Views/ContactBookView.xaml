@@ -19,19 +19,19 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" MinHeight="30"/>
+            <RowDefinition Height="Auto" MinHeight="30"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" MinHeight="40"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0">Contact Book</TextBlock>
+        <TextBlock Grid.Row="0" FontSize="18" FontWeight="Bold">Contact Book</TextBlock>
 
         <Button Grid.Row="1" Width="100" Height="30" HorizontalAlignment="Right" Command="{Binding AddContact}">Add</Button>
 
         <components:ContactListView Grid.Row="2" DataContext="{Binding ContactListViewModel}" TextChanged="ContactListView_TextChanged"></components:ContactListView>
 
-        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Height="40">
             <Button Width="100" Height="25" Margin="0 0 10 0" IsEnabled="{Binding IsAnythingToSave}" Command="{Binding CancelChanges}" Style="{StaticResource StoreButtonsStyle}">Cancel</Button>
             <Button Width="100" Height="25" Margin="0 0 10 0" IsEnabled="{Binding IsAnythingToSave}" Command="{Binding SaveChanges}" Style="{StaticResource StoreButtonsStyle}">Save</Button>
         </StackPanel>

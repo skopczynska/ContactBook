@@ -24,6 +24,7 @@ namespace ContactBook.App.Stores
         public event Action ChangesToContactsCancelled;
 
         public List<Contact> Contacts { get; set; }
+        public bool HasValidationError { get; internal set; }
 
         public ContactStore(IGetAllContactsQuery getAllContactsQuery, IUpdateContactsCommand updateContactsCommand, IAddContactCommand addContactCommand)
         {
@@ -46,7 +47,7 @@ namespace ContactBook.App.Stores
 
         public async Task Add(Contact newContact)
         {
-            await _addContactCommand.Execute(newContact);
+                await _addContactCommand.Execute(newContact);
             Contacts.Add(newContact);
             ContactAdded?.Invoke(newContact);
         }

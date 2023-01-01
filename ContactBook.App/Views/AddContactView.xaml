@@ -4,16 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ContactBook.App.Views"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:validationrules="clr-namespace:ContactBook.App.ValidationRules"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="boolToVisibilityConverter"/>
         <Style x:Key="addContactTextBoxStyle" TargetType="TextBox">
             <Setter Property="Width" Value="250"/>
             <Setter Property="Height" Value="20"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="0 5 0 5"/>
+
+            
+                
+            
+
+
+
+
+
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="0 5 0 5"/>
@@ -48,33 +58,34 @@
                 <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Column="0" Grid.Row="0">First Name</TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="1">Last Name</TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="2">Street Name</TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="3">House Number</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="0">First Name*</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="1">Last Name*</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="2">Street Name*</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="3">House Number*</TextBlock>
             <TextBlock Grid.Column="0" Grid.Row="4">Apartment Number</TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="5">Postal Code</TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="6">Town</TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="7">Phone</TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="8">Birthday</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="5">Postal Code*</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="6">Town*</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="7">Phone*</TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="8">Birthday*</TextBlock>
 
-            <TextBox Grid.Column="1" Grid.Row="0" Style="{StaticResource addContactTextBoxStyle}" Text="{Binding Path=NewContact.FirstName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <TextBox Grid.Column="1" Grid.Row="1" Style="{StaticResource addContactTextBoxStyle}" Text="{Binding Path=NewContact.LastName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <TextBox Grid.Column="1" Grid.Row="2" Style="{StaticResource addContactTextBoxStyle}" Text="{Binding Path=NewContact.StreetName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <TextBox Grid.Column="1" Grid.Row="3" Style="{StaticResource addContactTextBoxStyle}" Text="{Binding Path=NewContact.HouseNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <TextBox Grid.Column="1" Grid.Row="4" Style="{StaticResource addContactTextBoxStyle}" Text="{Binding Path=NewContact.ApartmentNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <TextBox Grid.Column="1" Grid.Row="5" Style="{StaticResource addContactTextBoxStyle}" Text="{Binding Path=NewContact.PostalCode, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <TextBox Grid.Column="1" Grid.Row="6" Style="{StaticResource addContactTextBoxStyle}" Text="{Binding Path=NewContact.Town, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <TextBox Grid.Column="1" Grid.Row="7" Style="{StaticResource addContactTextBoxStyle}" Text="{Binding Path=NewContact.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="0" Style="{StaticResource addContactTextBoxStyle}" Text="{Binding Path=FirstName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+            <TextBox Grid.Column="1" Grid.Row="1" Style="{StaticResource addContactTextBoxStyle}" Text="{Binding Path=LastName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="2" Style="{StaticResource addContactTextBoxStyle}" Text="{Binding Path=StreetName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="3" Style="{StaticResource addContactTextBoxStyle}" Text="{Binding Path=HouseNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="4" Style="{StaticResource addContactTextBoxStyle}" Text="{Binding Path=ApartmentNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="5" Style="{StaticResource addContactTextBoxStyle}" Text="{Binding Path=PostalCode, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="6" Style="{StaticResource addContactTextBoxStyle}" Text="{Binding Path=Town, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="7" Style="{StaticResource addContactTextBoxStyle}" Text="{Binding Path=PhoneNumber, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <DatePicker Grid.Column="1" Grid.Row="8" >
                 <DatePicker.Style>
                     <Style TargetType="DatePicker">
-                        <Setter Property="SelectedDate" Value="{Binding Path=NewContact.DateOfBirth, UpdateSourceTrigger=PropertyChanged}"></Setter>
+                        <Setter Property="SelectedDate" Value="{Binding Path=DateOfBirth, UpdateSourceTrigger=PropertyChanged}"></Setter>
                         <Setter Property="Width" Value="250"/>
                         <Setter Property="Height" Value="26"/>
                         <Setter Property="HorizontalAlignment" Value="Left"/>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding NewContact.DateOfBirth}" Value="{x:Static sys:DateTime.MinValue}">
+                            <DataTrigger Binding="{Binding DateOfBirth}" Value="{x:Static sys:DateTime.MinValue}">
                                 <Setter Property="SelectedDate" Value="" />
                             </DataTrigger>
                         </Style.Triggers>
@@ -84,10 +95,10 @@
             
         </Grid>
 
-        <StackPanel Grid.Row="2" Orientation="Vertical" HorizontalAlignment="Right">
-            
-            <TextBlock Text="{Binding ErrorMessage}" Visibility="{Binding IsErrorPresent}"/>
-            <StackPanel Orientation="Horizontal">
+        <StackPanel Grid.Row="2" Orientation="Vertical">
+            <TextBlock Text="Some obligatory fields are not given (look at those with *)." Visibility="{Binding HasErrors, Converter={StaticResource boolToVisibilityConverter}}" Foreground="Red"/>
+            <TextBlock Text="{Binding ErrorMessage}" Visibility="{Binding IsErrorPresent}" Foreground="Red"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Cancel" Command="{Binding CancelCommand}" Width="50" Margin="10 0 10 0"></Button>
             <Button Content="Add" Command="{Binding AddCommand}" IsEnabled="{Binding CanAdd}" Width="50" Margin="10 0 10 0"></Button>
             </StackPanel>
