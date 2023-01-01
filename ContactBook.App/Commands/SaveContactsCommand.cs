@@ -30,7 +30,20 @@ namespace ContactBook.App.Commands
 
         public async void Execute(object? parameter)
         {
-            List<Contact> contacts = new List<Contact>() ;
+            try
+            {
+                await ExecuteAsync();
+            }
+            catch
+            {
+                _contactListViewModel.ErrorMessage = "Error while saving contacts. Contact your admin and restart the application.";
+            }
+            
+        }
+
+        private async Task ExecuteAsync()
+        {
+            List<Contact> contacts = new List<Contact>();
             foreach (var contactVM in _contactListViewModel.Contacts)
             {
                 contacts.Add(contactVM.Contact);

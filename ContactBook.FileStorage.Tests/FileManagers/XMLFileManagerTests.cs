@@ -25,7 +25,7 @@ namespace ContactBook.FileStorage.Tests.FileManagers
         [Test]
         public void LoadOneElementFileTest()
         {
-            XMLFileManager xMLFileManager = new XMLFileManager(_oneElementLoadXMLFilePath);
+            XMLFileManager xMLFileManager = new XMLFileManager("Input", "oneElementFileLoad.xml");
             var contacts = xMLFileManager.GetAllContacts();
             Contact contact = contacts.Result.FirstOrDefault();
 

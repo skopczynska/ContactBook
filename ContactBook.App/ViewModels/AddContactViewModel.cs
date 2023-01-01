@@ -19,6 +19,20 @@ namespace ContactBook.App.ViewModels
         public ICommand AddCommand { get; }
         public ICommand CancelCommand { get; }
 
+        private string _errorMsg;
+        public string ErrorMessage
+        {
+            get { return _errorMsg; }
+            set
+            {
+                _errorMsg = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+                OnPropertyChanged(nameof(IsErrorPresent));
+            }
+        }
+
+        public bool IsErrorPresent => !string.IsNullOrEmpty(_errorMsg);
+
         public bool CanAdd => true;
 
         public AddContactViewModel(ModalNavigationStore modalNavigationStore, ContactStore contactStore)

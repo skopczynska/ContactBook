@@ -19,8 +19,21 @@ namespace ContactBook.App.ViewModels
         public IEnumerable<ContactListItemViewModel> Contacts => _contacts;
 
         public ICommand LoadAllContactsCommand { get; }
-        
-        
+
+        private string _errorMsg;
+        public string ErrorMessage
+        {
+            get { return _errorMsg; }
+            set
+            {
+                _errorMsg = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+                OnPropertyChanged(nameof(IsErrorPresent));
+            }
+        }
+
+        public bool IsErrorPresent => !string.IsNullOrEmpty(_errorMsg);
+
 
         public ContactListViewModel(ContactStore contactStore)
         {
@@ -31,7 +44,7 @@ namespace ContactBook.App.ViewModels
             _contactStore.ChangesToContactsCancelled += ContactStore_ChangesToContactsCancelled;
             _contacts = new ObservableCollection<ContactListItemViewModel>();
            
-            LoadAllContactsCommand = new GetAllContactsCommand(contactStore);
+            LoadAllContactsCommand = new GetAllContactsCommand(this, contactStore);
           
         }
 

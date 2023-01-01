@@ -14,11 +14,12 @@ namespace ContactBook.App.Commands
     {
         public event EventHandler? CanExecuteChanged;
         private ContactStore _contactStore;
+        private ContactListViewModel _contactListViewModel;
     
-        public CancelContactsCommand( ContactStore contactStore)
+        public CancelContactsCommand(ContactListViewModel contactListViewModel, ContactStore contactStore)
         {
             _contactStore = contactStore;
-            
+            _contactListViewModel = contactListViewModel;
         }
 
 
@@ -29,7 +30,14 @@ namespace ContactBook.App.Commands
 
         public async void Execute(object? parameter)
         {
-            await _contactStore.CancelChanges();
+            try
+            {
+                await _contactStore.CancelChanges();
+            }
+            catch
+            {
+                _contactListViewModel.ErrorMessage = "Error while cancelling changes. Contact your admin."
+            }
         }
     }
 }

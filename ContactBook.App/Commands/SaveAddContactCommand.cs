@@ -34,11 +34,12 @@ namespace ContactBook.App.Commands
         {
             try
             {
+                throw new Exception();
                 await ExecuteAsync(parameter);
             }
             catch(Exception)
             {
-                //TODO: Add Execption logging
+                _addContactViewModel.ErrorMessage = "Error while adding a contact. Conact the administrator";
             }
         }
 

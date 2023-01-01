@@ -12,13 +12,14 @@ namespace ContactBook.App.Commands
         public event EventHandler? CanExecuteChanged;
 
         private ContactListItemViewModel _contactListItemViewModel;
-        private ModalNavigationStore _modalNavigationStore;
         private ContactStore _contactStore;
+        private ContactListViewModel _contactListViewModel;
+               
 
-        public DeleteContactCommand(ContactListItemViewModel contactListItemViewModel,  ContactStore contactStore)
+        public DeleteContactCommand(ContactListViewModel contactListViewModel, ContactListItemViewModel contactListItemViewModel, ContactStore contactStore)
         {
+            _contactListViewModel = contactListViewModel;
             _contactListItemViewModel = contactListItemViewModel;
-            
             _contactStore = contactStore;
         }
 
@@ -35,7 +36,7 @@ namespace ContactBook.App.Commands
             }
             catch (Exception)
             {
-                //TODO: Add Execption logging
+                _contactListViewModel.ErrorMessage = "Errrow while deleting contact. Please contact your admin.";
             }
         }
 

@@ -11,12 +11,14 @@ namespace ContactBook.App.Commands
 {
     public class OpenAddContactViewCommand : ICommand
     {
+        private readonly ContactListViewModel _contactListViewModel;
         private ModalNavigationStore _modalNavigationStore;
         private ContactStore _contactStore;
 
 
-        public OpenAddContactViewCommand(ModalNavigationStore modalNavigationStore, ContactStore contactStore)
+        public OpenAddContactViewCommand(ContactListViewModel contactListViewModel, ModalNavigationStore modalNavigationStore, ContactStore contactStore)
         {
+            _contactListViewModel = contactListViewModel;
             _modalNavigationStore = modalNavigationStore;
             _contactStore = contactStore;
         }

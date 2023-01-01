@@ -22,7 +22,7 @@ namespace ContactBook.App.ViewModels
             set
             {
                 _isAnythingToSave = value;
-                OnPropertyChanged("IsAnythingToSave");
+                OnPropertyChanged(nameof(IsAnythingToSave));
             }
         }
         public ContactListViewModel ContactListViewModel { get; }
@@ -38,9 +38,9 @@ namespace ContactBook.App.ViewModels
             _modalNavigationStore = modalNavigationStore;
             ContactListViewModel = ContactListViewModel.GetInitiatedContactListViewModel(contactStore);
 
-            AddContact = new OpenAddContactViewCommand(_modalNavigationStore, contactStore);
+            AddContact = new OpenAddContactViewCommand(ContactListViewModel, _modalNavigationStore, contactStore);
             SaveChanges = new SaveContactsCommand(ContactListViewModel, contactStore);
-            CancelChanges = new CancelContactsCommand(contactStore);
+            CancelChanges = new CancelContactsCommand(ContactListViewModel, contactStore);
 
             contactStore.ContactsUpdated += ContactStore_ContactsUpdated;
             contactStore.ContactAdded += ContactStore_ContactAdded;

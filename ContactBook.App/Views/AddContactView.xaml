@@ -85,6 +85,7 @@
         </Grid>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="{Binding ErrorMessage}" Visibility="{Binding IsErrorPresent}"/>
             <Button Content="Cancel" Command="{Binding CancelCommand}" Width="50" Margin="10 0 10 0"></Button>
             <Button Content="Add" Command="{Binding AddCommand}" IsEnabled="{Binding CanAdd}" Width="50" Margin="10 0 10 0"></Button>
         </StackPanel>

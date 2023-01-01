@@ -16,6 +16,7 @@ namespace ContactBook.App.ViewModels
         public Contact Contact { get; private set; }
         
         public ICommand UpdateContactCommand;
+        private readonly ContactListViewModel contactListViewModel;
 
         public string FirstName
         {
@@ -23,7 +24,7 @@ namespace ContactBook.App.ViewModels
             set { 
                 Contact.FirstName = value;
                 UpdateContactCommand.Execute(null);
-                OnPropertyChanged("FirstName");
+                OnPropertyChanged(nameof(FirstName));
             }
         }
 
@@ -34,7 +35,7 @@ namespace ContactBook.App.ViewModels
             {
                 Contact.LastName = value;
                 UpdateContactCommand.Execute(null);
-                OnPropertyChanged("LastName");
+                OnPropertyChanged(nameof(LastName));
             }
         }
 
@@ -46,7 +47,7 @@ namespace ContactBook.App.ViewModels
             {
                 Contact.StreetName = value;
                 UpdateContactCommand.Execute(null);
-                OnPropertyChanged("StreetName");
+                OnPropertyChanged(nameof(StreetName));
             }
         }
 
@@ -58,7 +59,7 @@ namespace ContactBook.App.ViewModels
             {
                 Contact.HouseNumber = value;
                 UpdateContactCommand.Execute(null);
-                OnPropertyChanged("HouseNumber");
+                OnPropertyChanged(nameof(HouseNumber));
             }
         }
 
@@ -70,7 +71,7 @@ namespace ContactBook.App.ViewModels
             {
                 Contact.ApartmentNumber = value;
                 UpdateContactCommand.Execute(null);
-                OnPropertyChanged("ApartmentNumber");
+                OnPropertyChanged(nameof(ApartmentNumber));
             }
         }
 
@@ -81,7 +82,7 @@ namespace ContactBook.App.ViewModels
             {
                 Contact.PostalCode = value;
                 UpdateContactCommand.Execute(null);
-                OnPropertyChanged("PostalCode");
+                OnPropertyChanged(nameof(PostalCode));
             }
         }
 
@@ -92,7 +93,7 @@ namespace ContactBook.App.ViewModels
             {
                 Contact.Town = value;
                 UpdateContactCommand.Execute(null);
-                OnPropertyChanged("Town");
+                OnPropertyChanged(nameof(Town));
             }
         }
 
@@ -103,7 +104,7 @@ namespace ContactBook.App.ViewModels
             {
                 Contact.PhoneNumber = value;
                 UpdateContactCommand.Execute(null);
-                OnPropertyChanged("PhoneNumber");
+                OnPropertyChanged(nameof(PhoneNumber));
             }
         }
 
@@ -114,7 +115,7 @@ namespace ContactBook.App.ViewModels
             {
                 Contact.DateOfBirth = value;
                 UpdateContactCommand.Execute(null);
-                OnPropertyChanged("DateOfBirth");
+                OnPropertyChanged(nameof(DateOfBirth));
             }
         }
 
@@ -124,8 +125,9 @@ namespace ContactBook.App.ViewModels
 
         public ICommand DeleteCommand { get; }
 
-        public ContactListItemViewModel(Contact contact, ContactStore contactStore)
+        public ContactListItemViewModel(ContactListViewModel _contactListViewModel, Contact contact, ContactStore contactStore)
         {
+            _contactListViewModel = _contactListViewModel;
             Contact = contact;
             DeleteCommand = new DeleteContactCommand(this, contactStore);
             UpdateContactCommand = new UpdateContactCommand(this, contactStore);
