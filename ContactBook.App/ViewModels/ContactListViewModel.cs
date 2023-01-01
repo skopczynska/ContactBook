@@ -59,7 +59,7 @@ namespace ContactBook.App.ViewModels
 
             foreach (Contact contact in _contactStore.Contacts)
             {
-                ContactListItemViewModel clvim = new ContactListItemViewModel(contact, _contactStore);
+                ContactListItemViewModel clvim = new ContactListItemViewModel(this, contact, _contactStore);
                 _contacts.Add(clvim);
             }
         }
@@ -80,7 +80,7 @@ namespace ContactBook.App.ViewModels
         }
         private void ContactStore_ContactAdded(Contact newContact)
         {
-            ContactListItemViewModel clvim = new ContactListItemViewModel(newContact, _contactStore);
+            ContactListItemViewModel clvim = new ContactListItemViewModel(this, newContact, _contactStore);
             _contacts.Add(clvim);
         }
 

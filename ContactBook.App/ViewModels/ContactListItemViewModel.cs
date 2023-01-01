@@ -16,7 +16,7 @@ namespace ContactBook.App.ViewModels
         public Contact Contact { get; private set; }
         
         public ICommand UpdateContactCommand;
-        private readonly ContactListViewModel contactListViewModel;
+        private readonly ContactListViewModel _contactListViewModel;
 
         public string FirstName
         {
@@ -125,11 +125,11 @@ namespace ContactBook.App.ViewModels
 
         public ICommand DeleteCommand { get; }
 
-        public ContactListItemViewModel(ContactListViewModel _contactListViewModel, Contact contact, ContactStore contactStore)
+        public ContactListItemViewModel(ContactListViewModel contactListViewModel, Contact contact, ContactStore contactStore)
         {
-            _contactListViewModel = _contactListViewModel;
+            _contactListViewModel = contactListViewModel;
             Contact = contact;
-            DeleteCommand = new DeleteContactCommand(this, contactStore);
+            DeleteCommand = new DeleteContactCommand(_contactListViewModel, this, contactStore);
             UpdateContactCommand = new UpdateContactCommand(this, contactStore);
          
         }

@@ -48,7 +48,7 @@ namespace ContactBook.FileStorage.Tests.FileManagers
         [Test]
         public void SaveOneElementFileTest()
         {
-            XMLFileManager xMLFileManager = new XMLFileManager(_oneElementSaveXMLFilePath);
+            XMLFileManager xMLFileManager = new XMLFileManager("Input", "oneElementFileLoad.xml");
             xMLFileManager.StoreAllContacts(new List<Contact>() { _firstContactToSave });
 
             Assert.IsTrue(File.Exists(_oneElementSaveXMLFilePath));

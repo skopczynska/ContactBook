@@ -36,7 +36,7 @@ namespace ContactBook.App.Commands
             }
             catch
             {
-                _contactListViewModel.ErrorMessage = "Error while cancelling changes. Contact your admin."
+                _contactListViewModel.ErrorMessage = "Error while cancelling changes. Contact your admin.";
             }
         }
     }

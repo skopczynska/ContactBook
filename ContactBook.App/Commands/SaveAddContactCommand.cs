@@ -34,8 +34,7 @@ namespace ContactBook.App.Commands
         {
             try
             {
-                throw new Exception();
-                await ExecuteAsync(parameter);
+               await ExecuteAsync(parameter);
             }
             catch(Exception)
             {
